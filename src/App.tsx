@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @typescript
  */
 
 import 'react-native-gesture-handler';
