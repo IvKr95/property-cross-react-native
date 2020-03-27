@@ -34,11 +34,9 @@ export const searchLocation: Function = (params: object) => (
           payload: result.locations,
         });
       }
-      dispatch({type: SEARCH_LOCATION.ENDED});
     },
     error => {
       dispatch({type: SEARCH_LOCATION.FAILURE, payload: error.message});
-      dispatch({type: SEARCH_LOCATION.ENDED});
     },
   );
 };

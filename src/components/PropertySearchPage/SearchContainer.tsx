@@ -1,34 +1,16 @@
 import React, {useEffect, useRef} from 'react';
-import {useDispatch, useSelector, DefaultRootState} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
 import withGeolocation from '../../hocs/withGeolocation';
 import SearchView from './SearchView';
 import {searchLocation} from '../../redux/actions/asyncActionCreators';
 import {setSearchField, setSearches} from '../../redux/actions/actionCreators';
+import {RootState} from '../../interfaces';
 
 interface Props {
   getData: () => Promise<object[]>;
   setData: (data: object) => void;
   searchByLocation: () => void;
-}
-
-interface PropSearch {
-  isLoading: boolean;
-  location: string;
-  recentSearches: Array<object | null>;
-  locations: Array<object> | null;
-  error: null | string | object;
-}
-
-interface SearchResults {
-  listings: Array<object | null>;
-  searchTerm: string;
-  total: number;
-}
-
-interface RootState {
-  propSearch: PropSearch;
-  searchResults: SearchResults;
 }
 
 const SearchContainer: React.FC<Props> = ({

@@ -1,10 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
-
-interface RecentSearch {
-  name: string;
-  total: number;
-}
+import {RecentSearch} from '../../interfaces';
 
 interface Props {
   recentSearches: Array<RecentSearch>;
