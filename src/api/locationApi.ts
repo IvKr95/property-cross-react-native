@@ -805,10 +805,10 @@ const LOCATIONS = {
 const locationAPI = {
   getLocation(extraParams) {
     const promise = new Promise((resolve, reject) => {
-      const timeout = Math.round(Math.random()) ? 2000 : 5000;
+      const timeout = Math.random() > 0.1 ? 1000 : 2000;
 
       const callback = () => {
-        if (timeout === 2000) {
+        if (timeout === 1000) {
           let response;
 
           if (extraParams.place_name) {

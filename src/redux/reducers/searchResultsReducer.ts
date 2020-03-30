@@ -1,3 +1,6 @@
+import {SEARCH_LOCATION} from '../actions/asyncTypes';
+import {Action} from '../../interfaces';
+
 const initialState = {
   searchTerm: '',
   page: 0,
@@ -6,21 +9,23 @@ const initialState = {
   listings: [],
 };
 
-const searchResultsReducer = (state = initialState, action) => {
+const searchResultsReducer = (state = initialState, action: Action) => {
   const {type, payload} = action;
 
   const actions = {
-    SEARCH_LOCATION_SUCCESS_LISTINGS() {
+    [SEARCH_LOCATION.SUCCESS]() {
+      const listings = payload.listings;
+
+      if (!listings) {
+        return state;
+      }
       return {
         ...state,
-        ...payload,
+        ...listings,
         currentlyDisplayed:
-          state.currentlyDisplayed + payload.currentlyDisplayed,
-        listings: [...state.listings, ...payload.listings],
+          state.currentlyDisplayed + listings.currentlyDisplayed,
+        listings: state.listings.concat(listings.listings),
       };
-    },
-    REMOVE_PROPS() {
-      return initialState;
     },
     default() {
       return state;

@@ -4,12 +4,21 @@ import {RecentSearch} from '../../interfaces';
 
 interface Props {
   recentSearches: Array<RecentSearch>;
+  removeRecentSearch: (name: string) => void;
   searchLocation: (placeName: object) => void;
 }
 
-const RecentSearches: React.FC<Props> = ({recentSearches, searchLocation}) => {
+const RecentSearches: React.FC<Props> = ({
+  recentSearches,
+  searchLocation,
+  removeRecentSearch,
+}) => {
   const handlePress = (name: string) => {
     searchLocation({place_name: name});
+  };
+
+  const handleRemove = (name: string) => {
+    removeRecentSearch(name);
   };
 
   return (
@@ -22,6 +31,11 @@ const RecentSearches: React.FC<Props> = ({recentSearches, searchLocation}) => {
             onPress={() => handlePress(item.name)}>
             <Text style={styles.title}>{item.name}</Text>
             <Text>{item.total}</Text>
+            <TouchableOpacity
+              onPress={() => handleRemove(item.name)}
+              style={styles.deleteButton}>
+              <Text>X</Text>
+            </TouchableOpacity>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.name}
@@ -42,6 +56,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
 });
 

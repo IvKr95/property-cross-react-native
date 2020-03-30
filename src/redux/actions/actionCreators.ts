@@ -1,8 +1,7 @@
 import {
-  SET_SEARCHES,
-  REMOVE_SEARCHES,
-  REMOVE_PROPS,
-  SET_FIELD,
+  SET_RECENT_SEARCHES,
+  REMOVE_RECENT_SEARCHES,
+  SET_SEARCH_FIELD,
   SET_ERROR,
   SET_LISTING,
   SET_FAVOURITE,
@@ -12,17 +11,17 @@ import {
 } from './types';
 
 export const setSearches = (payload: Array<object>) => ({
-  type: SET_SEARCHES,
+  type: SET_RECENT_SEARCHES,
   payload,
 });
 
 export const removeSearches = (payload: null | undefined) => ({
-  type: REMOVE_SEARCHES,
+  type: REMOVE_RECENT_SEARCHES,
   payload,
 });
 
 export const setSearchField = (payload: string) => ({
-  type: SET_FIELD,
+  type: SET_SEARCH_FIELD,
   payload,
 });
 
@@ -47,10 +46,6 @@ export const setFavourites = (payload: Array<object>) => ({
 export const removeFavourite = (payload: string) => ({
   type: REMOVE_FAVOURITE,
   payload,
-});
-
-export const removeProps = () => ({
-  type: REMOVE_PROPS,
 });
 
 export const setError = (payload: string) => ({

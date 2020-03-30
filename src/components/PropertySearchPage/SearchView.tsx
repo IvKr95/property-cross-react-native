@@ -14,6 +14,7 @@ interface Props {
   locations: Array<Location> | null;
   error: null | object | string;
   searchByLocation: () => void;
+  removeRecentSearch: (name: string) => void;
 }
 
 const SearchView: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const SearchView: React.FC<Props> = ({
   locations,
   error,
   searchByLocation,
+  removeRecentSearch,
 }) => {
   const errorSlot = () => {
     return <Text>{error}</Text>;
@@ -35,6 +37,7 @@ const SearchView: React.FC<Props> = ({
       return (
         <RecentSearches
           recentSearches={recentSearches}
+          removeRecentSearch={removeRecentSearch}
           searchLocation={searchLocation}
         />
       );

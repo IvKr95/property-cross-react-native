@@ -10,12 +10,14 @@ import {RootState} from '../../interfaces';
 interface Props {
   getData: () => Promise<object[]>;
   setData: (data: object) => void;
+  removeItem: (name: string) => void;
   searchByLocation: () => void;
 }
 
 const SearchContainer: React.FC<Props> = ({
   getData,
   setData,
+  removeItem,
   searchByLocation,
 }) => {
   const dispatch = useDispatch();
@@ -54,6 +56,10 @@ const SearchContainer: React.FC<Props> = ({
     dispatch(setSearchField(input));
   };
 
+  const removeRecentSearch = (name: string) => {
+    removeItem(name);
+  };
+
   return (
     <SearchView
       recentSearches={recentSearches}
@@ -64,6 +70,7 @@ const SearchContainer: React.FC<Props> = ({
       location={location}
       isLoading={isLoading}
       searchByLocation={searchByLocation}
+      removeRecentSearch={removeRecentSearch}
     />
   );
 };

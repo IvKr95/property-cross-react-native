@@ -1,21 +1,23 @@
-const initialState: Array<object | null> = [];
+import {
+  SET_FAVOURITE,
+  SET_FAVOURITES,
+  REMOVE_FAVOURITE,
+} from '../actions/types';
+import {Action} from '../../interfaces';
 
-interface Action {
-  type: string;
-  payload: string | Array<object> | object;
-}
+const initialState: Array<object | null> = [];
 
 const favouritesReducer = (state = initialState, action: Action) => {
   const {type, payload} = action;
 
   const actions = {
-    SET_FAVOURITE() {
+    [SET_FAVOURITE]() {
       return [...state, payload];
     },
-    SET_FAVOURITES() {
+    [SET_FAVOURITES]() {
       return payload;
     },
-    REMOVE_FAVOURITE() {
+    [REMOVE_FAVOURITE]() {
       return state.filter(fav => fav.lister_url !== action.payload);
     },
     default() {
