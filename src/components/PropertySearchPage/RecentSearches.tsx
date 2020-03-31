@@ -3,7 +3,7 @@ import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import {RecentSearch} from '../../interfaces';
 
 interface Props {
-  recentSearches: Array<RecentSearch>;
+  recentSearches: RecentSearch[];
   removeRecentSearch: (name: string) => void;
   searchLocation: (placeName: object) => void;
 }

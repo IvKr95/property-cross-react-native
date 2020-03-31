@@ -1,17 +1,17 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import {RecentSearch, Location} from '../../interfaces';
 import RecentSearches from './RecentSearches';
 import Locations from './Locations';
 import SearchForm from './SearchForm';
-import {RecentSearch, Location} from '../../interfaces';
 
 interface Props {
-  recentSearches: Array<RecentSearch>;
+  recentSearches: RecentSearch[];
   searchLocation: (placeName: object) => void;
   changeInput: (input: string) => void;
   location: string;
   isLoading: boolean;
-  locations: Array<Location> | null;
+  locations: Location[] | null;
   error: null | object | string;
   searchByLocation: () => void;
   removeRecentSearch: (name: string) => void;

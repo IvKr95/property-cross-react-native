@@ -8,6 +8,7 @@ import {
   SET_FAVOURITES,
   REMOVE_FAVOURITE,
   REMOVE_LISTING,
+  SEARCH_LOCATION,
 } from './types';
 
 export const setSearches = (payload: Array<object>) => ({
@@ -50,5 +51,10 @@ export const removeFavourite = (payload: string) => ({
 
 export const setError = (payload: string) => ({
   type: SET_ERROR,
+  payload,
+});
+
+export const searchLocation = (payload: object) => ({
+  type: SEARCH_LOCATION,
   payload,
 });

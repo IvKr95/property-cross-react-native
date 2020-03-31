@@ -2,10 +2,10 @@ import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
 import withGeolocation from '../../hocs/withGeolocation';
-import SearchView from './SearchView';
-import {searchLocation} from '../../redux/actions/asyncActionCreators';
+import {searchLocation} from '../../redux/actions/actionCreators';
 import {setSearchField, setSearches} from '../../redux/actions/actionCreators';
 import {RootState} from '../../interfaces';
+import SearchView from './SearchView';
 
 interface Props {
   getData: () => Promise<object[]>;

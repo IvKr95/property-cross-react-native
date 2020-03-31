@@ -3,7 +3,7 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import {Location} from '../../interfaces';
 
 interface Props {
-  locations: Array<Location>;
+  locations: Location[];
 }
 
 const Locations: React.FC<Props> = ({locations}) => {

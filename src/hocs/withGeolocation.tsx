@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import {setError} from '../redux/actions/actionCreators';
-import {searchLocation} from '../redux/actions/asyncActionCreators';
+import {searchLocation} from '../redux/actions/actionCreators';
 
 interface Error {
   code: number;
