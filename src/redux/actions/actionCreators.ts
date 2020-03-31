@@ -9,6 +9,7 @@ import {
   REMOVE_FAVOURITE,
   REMOVE_LISTING,
   SEARCH_LOCATION,
+  GET_GEOLOCATION,
 } from './types';
 
 export const setSearches = (payload: Array<object>) => ({
@@ -57,4 +58,8 @@ export const setError = (payload: string) => ({
 export const searchLocation = (payload: object) => ({
   type: SEARCH_LOCATION,
   payload,
+});
+
+export const getGeolocation = () => ({
+  type: GET_GEOLOCATION,
 });

@@ -1,9 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
-import withGeolocation from '../../hocs/withGeolocation';
 import {searchLocation} from '../../redux/actions/actionCreators';
-import {setSearchField, setSearches} from '../../redux/actions/actionCreators';
+import {
+  setSearchField,
+  setSearches,
+  getGeolocation,
+} from '../../redux/actions/actionCreators';
+
 import {RootState} from '../../interfaces';
 import SearchView from './SearchView';
 
@@ -11,15 +15,9 @@ interface Props {
   getData: () => Promise<object[]>;
   setData: (data: object) => void;
   removeItem: (name: string) => void;
-  searchByLocation: () => void;
 }
 
-const SearchContainer: React.FC<Props> = ({
-  getData,
-  setData,
-  removeItem,
-  searchByLocation,
-}) => {
+const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
   const dispatch = useDispatch();
   const {isLoading, location, recentSearches, locations, error} = useSelector(
     (state: RootState) => state.propSearch,
@@ -53,11 +51,17 @@ const SearchContainer: React.FC<Props> = ({
   };
 
   const changeInput = (input: string) => {
-    dispatch(setSearchField(input));
+    const action = setSearchField(input);
+    dispatch(action);
   };
 
   const removeRecentSearch = (name: string) => {
     removeItem(name);
+  };
+
+  const getCoords = () => {
+    const action = getGeolocation();
+    dispatch(action);
   };
 
   return (
@@ -69,12 +73,10 @@ const SearchContainer: React.FC<Props> = ({
       changeInput={changeInput}
       location={location}
       isLoading={isLoading}
-      searchByLocation={searchByLocation}
       removeRecentSearch={removeRecentSearch}
+      getCoords={getCoords}
     />
   );
 };
 
-export default withAsyncStorage('recent_searches')(
-  withGeolocation(SearchContainer),
-);
+export default withAsyncStorage('recent_searches')(SearchContainer);

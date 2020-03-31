@@ -8,12 +8,12 @@ import SearchForm from './SearchForm';
 interface Props {
   recentSearches: RecentSearch[];
   searchLocation: (placeName: object) => void;
+  getCoords: () => void;
   changeInput: (input: string) => void;
   location: string;
   isLoading: boolean;
   locations: Location[] | null;
   error: null | object | string;
-  searchByLocation: () => void;
   removeRecentSearch: (name: string) => void;
 }
 
@@ -25,8 +25,8 @@ const SearchView: React.FC<Props> = ({
   recentSearches,
   locations,
   error,
-  searchByLocation,
   removeRecentSearch,
+  getCoords,
 }) => {
   const errorSlot = () => {
     return <Text>{error}</Text>;
@@ -51,10 +51,10 @@ const SearchView: React.FC<Props> = ({
     <View style={styles.container}>
       <SearchForm
         searchLocation={searchLocation}
+        getCoords={getCoords}
         changeInput={changeInput}
         location={location}
         isLoading={isLoading}
-        searchByLocation={searchByLocation}
       />
       {(error ? errorSlot : listSlot)()}
     </View>

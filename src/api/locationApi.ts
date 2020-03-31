@@ -3,13 +3,9 @@ import locations from './locationsMock.json';
 const locationAPI = {
   getLocation(extraParams: object) {
     const promise = new Promise((resolve, reject) => {
-      const timeout = Math.random() > 0.1 ? 1000 : 2000;
+      const isSuccess = Math.random() > 0.1;
 
-      const callback = () => {
-        if (timeout !== 1000) {
-          reject('Timeout');
-        }
-
+      const successCallback = () => {
         const [param] = Object.entries(extraParams);
         const [key, value] = param;
 
@@ -34,8 +30,12 @@ const locationAPI = {
         };
         resolve(JSON.stringify(response));
       };
+      const failureCallback = () => {
+        reject('Timeout');
+      };
 
-      setTimeout(callback, timeout);
+      const callback = isSuccess ? successCallback : failureCallback;
+      setTimeout(callback, 1000);
     });
 
     return promise
@@ -76,7 +76,7 @@ const locationAPI = {
           // any other response is considered an error
           throw new Error('Other');
         },
-        error => {
+        () => {
           throw new Error('Network connection issues / timeout');
         },
       );
