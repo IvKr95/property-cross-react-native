@@ -1,36 +1,38 @@
-import {put, takeLatest, all, call} from 'redux-saga/effects';
-import {GET_GEOLOCATION, SET_ERROR} from '../actions/types';
+import {put, takeLatest, call} from 'redux-saga/effects';
+import {GET_GEOLOCATION} from '../actions/types';
 import {SEARCH_LOCATION} from '../actions/asyncTypes';
+import {
+  searchLocationRequest,
+  searchLocationSuccess,
+  searchLocationFailure,
+  setError,
+} from '../actions/actionCreators';
 import locationAPI from '../../api/locationApi';
 import geolocationApi from '../../api/geolocationApi';
 
 function* searchLocation(action) {
-  yield put({type: SEARCH_LOCATION.REQUEST});
+  yield put(searchLocationRequest());
   try {
     const data = yield call(locationAPI.getLocation, action.payload);
-    yield put({type: SEARCH_LOCATION.SUCCESS, payload: data});
+    yield put(searchLocationSuccess(data));
   } catch (error) {
-    yield put({type: SEARCH_LOCATION.FAILURE, payload: error.message});
+    yield put(searchLocationFailure(error.message));
   }
 }
 
 function* getGeolocation() {
   try {
     const position = yield call(geolocationApi.getPosition);
-    yield put({type: 'SEARCH_LOCATION', payload: {centre_point: position}});
+    yield put(searchLocationRequest({centre_point: position}));
   } catch (error) {
-    yield put({type: SET_ERROR, payload: error});
+    yield put(setError(error.message));
   }
 }
 
-function* watchSearchLocation() {
-  yield takeLatest('SEARCH_LOCATION', searchLocation);
+export function* watchSearchLocation() {
+  yield takeLatest(SEARCH_LOCATION.REQUEST, searchLocation);
 }
 
-function* watchGetGeolocation() {
+export function* watchGetGeolocation() {
   yield takeLatest(GET_GEOLOCATION, getGeolocation);
-}
-
-export default function* rootSaga() {
-  yield all([watchSearchLocation(), watchGetGeolocation()]);
 }

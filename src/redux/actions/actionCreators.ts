@@ -8,9 +8,9 @@ import {
   SET_FAVOURITES,
   REMOVE_FAVOURITE,
   REMOVE_LISTING,
-  SEARCH_LOCATION,
   GET_GEOLOCATION,
 } from './types';
+import {SEARCH_LOCATION} from './asyncTypes';
 
 export const setSearches = (payload: Array<object>) => ({
   type: SET_RECENT_SEARCHES,
@@ -55,8 +55,18 @@ export const setError = (payload: string) => ({
   payload,
 });
 
-export const searchLocation = (payload: object) => ({
-  type: SEARCH_LOCATION,
+export const searchLocationRequest = (payload?: object) => ({
+  type: SEARCH_LOCATION.REQUEST,
+  payload,
+});
+
+export const searchLocationSuccess = (payload: object) => ({
+  type: SEARCH_LOCATION.SUCCESS,
+  payload,
+});
+
+export const searchLocationFailure = (payload: object) => ({
+  type: SEARCH_LOCATION.FAILURE,
   payload,
 });
 
