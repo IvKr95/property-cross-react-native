@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {nanoid} from 'nanoid';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
 import {searchLocation} from '../../redux/actions/actionCreators';
 import {
@@ -39,6 +40,7 @@ const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
     }
     if (!isLoading && listings.length) {
       setData({
+        id: nanoid(),
         name: searchTerm,
         total,
       });

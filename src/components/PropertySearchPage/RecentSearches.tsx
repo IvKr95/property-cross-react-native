@@ -38,7 +38,7 @@ const RecentSearches: React.FC<Props> = ({
             </TouchableOpacity>
           </TouchableOpacity>
         )}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.id}
         ListHeaderComponent={() => <Text>Recent Searches:</Text>}
       />
     </View>
