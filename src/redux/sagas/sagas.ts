@@ -11,7 +11,6 @@ import locationAPI from '../../api/locationApi';
 import geolocationApi from '../../api/geolocationApi';
 
 function* searchLocation(action) {
-  yield put(searchLocationRequest());
   try {
     const data = yield call(locationAPI.getLocation, action.payload);
     yield put(searchLocationSuccess(data));

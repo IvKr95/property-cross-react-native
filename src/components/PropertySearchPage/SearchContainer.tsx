@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid/non-secure';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
-import {searchLocation} from '../../redux/actions/actionCreators';
+import {searchLocationRequest} from '../../redux/actions/actionCreators';
 import {
   setSearchField,
   setSearches,
@@ -47,8 +47,8 @@ const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
     }
   }, [isLoading, listings, searchTerm, setData, total]);
 
-  const searchLoc = (by: object) => {
-    const action = searchLocation(by);
+  const searchLocation = (by: object) => {
+    const action = searchLocationRequest(by);
     dispatch(action);
   };
 
@@ -71,7 +71,7 @@ const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
       recentSearches={recentSearches}
       locations={locations}
       error={error}
-      searchLocation={searchLoc}
+      searchLocation={searchLocation}
       changeInput={changeInput}
       location={location}
       isLoading={isLoading}
