@@ -9,7 +9,6 @@ interface Props {
 
 const ListingItem: React.FC<Props> = ({listing, goToListing}) => {
   const handlePress = (data: JSON) => {
-    console.log(data);
     goToListing(data);
   };
 

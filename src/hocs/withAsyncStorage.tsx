@@ -11,7 +11,7 @@ const withAsyncStorage: Function = (key: string): Function => (
   const getData = (): Promise<object[] | undefined> => {
     return AsyncStorage.getItem(`@storage_${key}`)
       .then(result => JSON.parse(result))
-      .catch(err => console.log(err));
+      .catch(error => console.log(error));
   };
 
   const setData = (item: Item): void => {
@@ -31,8 +31,8 @@ const withAsyncStorage: Function = (key: string): Function => (
   const removeData = async (): Promise<void> => {
     try {
       await AsyncStorage.removeItem(`@storage_${key}`);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -36,7 +36,7 @@ const SearchContainer: React.FC<Props> = ({
   useEffect(() => {
     const data = getData();
     data.then(entry => dispatch(setSearches(entry)));
-  }, [dispatch, getData, recentSearches]);
+  }, [dispatch, getData]);
 
   useEffect(() => {
     if (firstRun.current) {
@@ -51,7 +51,7 @@ const SearchContainer: React.FC<Props> = ({
       });
       navigation.navigate('ResultsPage');
     }
-  }, [isLoading, listings, navigation, searchTerm, setData, total]);
+  }, [isLoading, listings.length, navigation, searchTerm, setData, total]);
 
   const searchLocation = (by: object) => {
     if (
