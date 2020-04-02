@@ -18,6 +18,7 @@ export interface RootState {
 }
 
 export interface RecentSearch {
+  id: string;
   name: string;
   total: number;
 }
@@ -49,4 +50,10 @@ export interface Route {
 export interface Action {
   type: string;
   payload: string | object[] | object;
+}
+
+export interface Listing {
+  thumb_url: string;
+  title: string;
+  price_formatted: string;
 }
