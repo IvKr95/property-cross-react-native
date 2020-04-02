@@ -6,25 +6,33 @@ const locationAPI = {
       const isSuccess = Math.random() > 0.1;
 
       const successCallback = () => {
-        const [param] = Object.entries(extraParams);
-        const [key, value] = param;
+        let location;
+        const page = extraParams.page || 0;
 
-        const location = locations.find(location => location[key] === value);
+        if (extraParams.centre_point) {
+          location = locations.find(
+            location => location.centre_point === extraParams.centre_point,
+          );
+        } else {
+          location = locations.find(
+            location => location.place_name === extraParams.place_name,
+          );
+        }
 
-        const response = {
+        response = {
           request: {
             pretty: 1,
             action: 'search_listings',
             encoding: 'json',
-            num_res: location ? 20 : 0,
-            page: 1,
+            num_res: location ? 2 : 0,
+            page,
             location: location ? location.place_name : extraParams.place_name,
           },
           response: {
             application_response_code: location ? 100 : 201,
             status_code: 200,
             total_results: location ? location.total_results : 0,
-            listings: location ? location.listings : [],
+            listings: location ? location.listings[page] : [],
             locations: [],
           },
         };

@@ -16,6 +16,7 @@ const BottomTabBar: React.FC<Props> = ({state, descriptors, navigation}) => {
     <View style={{flexDirection: 'row'}}>
       {state.routes.map((route, index) => (
         <BottomTab
+          key={index}
           route={route}
           index={index}
           state={state}

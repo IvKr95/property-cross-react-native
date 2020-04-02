@@ -19,6 +19,15 @@ const searchResultsReducer = (state = initialState, action: Action) => {
       if (!listings) {
         return state;
       }
+
+      if (state.searchTerm !== listings.searchTerm) {
+        return {
+          ...state,
+          ...listings,
+          currentlyDisplayed: listings.currentlyDisplayed,
+          listings: listings.listings,
+        };
+      }
       return {
         ...state,
         ...listings,

@@ -18,12 +18,17 @@ interface Props {
   removeItem: (name: string) => void;
 }
 
-const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
+const SearchContainer: React.FC<Props> = ({
+  getData,
+  setData,
+  removeItem,
+  navigation,
+}) => {
   const dispatch = useDispatch();
   const {isLoading, location, recentSearches, locations, error} = useSelector(
     (state: RootState) => state.propSearch,
   );
-  const {listings, searchTerm, total} = useSelector(
+  const {listings, searchTerm, total, currentlyDisplayed} = useSelector(
     (state: RootState) => state.searchResults,
   );
   const firstRun = useRef<boolean>(true);
@@ -44,10 +49,19 @@ const SearchContainer: React.FC<Props> = ({getData, setData, removeItem}) => {
         name: searchTerm,
         total,
       });
+      navigation.navigate('ResultsPage');
     }
-  }, [isLoading, listings, searchTerm, setData, total]);
+  }, [isLoading, listings, navigation, searchTerm, setData, total]);
 
   const searchLocation = (by: object) => {
+    if (
+      currentlyDisplayed &&
+      currentlyDisplayed === total &&
+      searchTerm === by.place_name
+    ) {
+      navigation.navigate('ResultsPage');
+      return;
+    }
     const action = searchLocationRequest(by);
     dispatch(action);
   };

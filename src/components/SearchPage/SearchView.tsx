@@ -6,15 +6,15 @@ import Locations from './Locations';
 import SearchForm from './SearchForm';
 
 interface Props {
-  recentSearches: RecentSearch[];
   searchLocation: (placeName: object) => void;
-  getCoords: () => void;
+  removeRecentSearch: (name: string) => void;
   changeInput: (input: string) => void;
+  getCoords: () => void;
   location: string;
   isLoading: boolean;
   locations: Location[] | null;
   error: null | object | string;
-  removeRecentSearch: (name: string) => void;
+  recentSearches: RecentSearch[];
 }
 
 const SearchView: React.FC<Props> = ({
