@@ -9,13 +9,14 @@ import {
   getGeolocation,
   searchLocationRequest,
 } from '../../redux/actions/actionCreators';
-import {RootState} from '../../interfaces';
+import {RootState, Navigation} from '../../interfaces';
 import SearchView from './SearchView';
 
 interface Props {
   getData: () => Promise<object[]>;
   setData: (data: object) => void;
   removeItem: (name: string) => void;
+  navigation: Navigation;
 }
 
 const SearchContainer: React.FC<Props> = ({
@@ -67,7 +68,7 @@ const SearchContainer: React.FC<Props> = ({
     total,
   ]);
 
-  const searchLocation = (by: object) => {
+  const searchLocation = (by: {place_name: string}) => {
     if (
       currentlyDisplayed &&
       currentlyDisplayed === total &&

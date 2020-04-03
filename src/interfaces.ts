@@ -1,15 +1,17 @@
 export interface PropSearch {
   isLoading: boolean;
   location: string;
-  recentSearches: object[] | [];
+  recentSearches: object[];
   locations: object[] | null;
   error: null | string | object;
 }
 
 export interface SearchResults {
-  listings: object[] | [];
+  listings: object[];
   searchTerm: string;
+  currentlyDisplayed: number;
   total: number;
+  page: number;
 }
 
 export interface ListingPage {
@@ -56,7 +58,7 @@ export interface Route {
 
 export interface Action {
   type: string;
-  payload: string | object[] | object;
+  payload?: string | object[] | object | JSON;
 }
 
 export interface Listing {

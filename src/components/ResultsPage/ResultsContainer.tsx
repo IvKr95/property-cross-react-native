@@ -1,17 +1,21 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  setListing,
-  searchLocationRequest,
-} from '../../redux/actions/actionCreators';
+import {searchLocationRequest} from '../../redux/actions/actionCreators';
 import ResultsView from './ResultsView';
+import {RootState, Navigation} from '../../interfaces';
 
-const ResultsContainer = ({navigation}) => {
+interface Props {
+  navigation: Navigation;
+}
+
+const ResultsContainer: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const {page, total, listings, searchTerm, currentlyDisplayed} = useSelector(
-    state => state.searchResults,
+    (state: RootState) => state.searchResults,
   );
-  const {isLoading, error} = useSelector(state => state.propSearch);
+  const {isLoading, error} = useSelector(
+    (state: RootState) => state.propSearch,
+  );
 
   const goToListing = (item: JSON) => {
     navigation.navigate('ListingPage', {listing: item});

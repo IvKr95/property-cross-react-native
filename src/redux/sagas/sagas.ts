@@ -9,8 +9,9 @@ import {
 } from '../actions/actionCreators';
 import locationAPI from '../../api/locationApi';
 import geolocationApi from '../../api/geolocationApi';
+import {Action} from '../../interfaces';
 
-function* searchLocation(action) {
+function* searchLocation(action: Action) {
   try {
     const data = yield call(locationAPI.getLocation, action.payload);
     yield put(searchLocationSuccess(data));

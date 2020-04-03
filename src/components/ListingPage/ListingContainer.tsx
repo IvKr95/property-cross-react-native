@@ -11,8 +11,8 @@ import withAsyncStorage from '../../hocs/withAsyncStorage';
 import {RootState} from '../../interfaces';
 
 interface Props {
-  getData: () => Promise<any[]>;
-  setData: (data: object) => Promise<any>;
+  getData: () => Promise<object[]>;
+  setData: (data: object) => Promise<void | undefined>;
   removeItem: (id: string) => void;
   route: {
     params: {

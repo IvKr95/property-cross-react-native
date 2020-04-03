@@ -8,7 +8,7 @@ interface Item {
 const withAsyncStorage: Function = (key: string): Function => (
   Component: React.FunctionComponent,
 ) => (props: any) => {
-  const getData = async () => {
+  const getData = async (): Promise<object[] | void> => {
     try {
       const json = await AsyncStorage.getItem(key);
       const result = await (json ? JSON.parse(json) : []);
@@ -18,7 +18,7 @@ const withAsyncStorage: Function = (key: string): Function => (
     }
   };
 
-  const setData = async (newItem: {id: string}): Promise<any> => {
+  const setData = async (newItem: {id: string}): Promise<undefined | void> => {
     try {
       const data = await getData();
 
