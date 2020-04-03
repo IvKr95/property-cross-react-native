@@ -12,9 +12,15 @@ export interface SearchResults {
   total: number;
 }
 
+export interface ListingPage {
+  isFavourite: boolean;
+  listing: object;
+}
+
 export interface RootState {
   propSearch: PropSearch;
   searchResults: SearchResults;
+  listing: ListingPage;
 }
 
 export interface RecentSearch {
@@ -45,6 +51,7 @@ export interface Navigation {
 export interface Route {
   name: string;
   key: string;
+  params?: object;
 }
 
 export interface Action {
@@ -56,4 +63,8 @@ export interface Listing {
   thumb_url: string;
   title: string;
   price_formatted: string;
+  img_url: string;
+  bedroom_number: number;
+  bathroom_number: number;
+  summary: string;
 }

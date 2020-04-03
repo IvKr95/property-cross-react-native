@@ -14,9 +14,7 @@ const ResultsContainer = ({navigation}) => {
   const {isLoading, error} = useSelector(state => state.propSearch);
 
   const goToListing = (item: JSON) => {
-    const action = setListing(item);
-    dispatch(action);
-    // navigation.navigate('ListingPage');
+    navigation.navigate('ListingPage', {listing: item});
   };
 
   const loadMore = () => {

@@ -5,7 +5,7 @@ import RecentSearchItem from './RecentSearchItem';
 
 interface Props {
   recentSearches: RecentSearch[];
-  removeRecentSearch: (name: string) => void;
+  removeRecentSearch: (id: string) => void;
   searchLocation: (placeName: object) => void;
 }
 

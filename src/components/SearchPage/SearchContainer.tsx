@@ -1,14 +1,14 @@
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {nanoid} from 'nanoid/non-secure';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
-import {searchLocationRequest} from '../../redux/actions/actionCreators';
 import {
-  setSearchField,
+  setSearch,
   setSearches,
+  removeSearch,
+  setSearchField,
   getGeolocation,
+  searchLocationRequest,
 } from '../../redux/actions/actionCreators';
-
 import {RootState} from '../../interfaces';
 import SearchView from './SearchView';
 
@@ -45,13 +45,27 @@ const SearchContainer: React.FC<Props> = ({
     }
     if (!isLoading && listings.length) {
       setData({
-        id: nanoid(),
+        id: searchTerm,
         name: searchTerm,
         total,
       });
+      const action = setSearch({
+        id: searchTerm,
+        name: searchTerm,
+        total,
+      });
+      dispatch(action);
       navigation.navigate('ResultsPage');
     }
-  }, [isLoading, listings.length, navigation, searchTerm, setData, total]);
+  }, [
+    dispatch,
+    isLoading,
+    listings.length,
+    navigation,
+    searchTerm,
+    setData,
+    total,
+  ]);
 
   const searchLocation = (by: object) => {
     if (
@@ -71,8 +85,10 @@ const SearchContainer: React.FC<Props> = ({
     dispatch(action);
   };
 
-  const removeRecentSearch = (name: string) => {
-    removeItem(name);
+  const removeRecentSearch = (id: string) => {
+    const action = removeSearch(id);
+    dispatch(action);
+    removeItem(id);
   };
 
   const getCoords = () => {

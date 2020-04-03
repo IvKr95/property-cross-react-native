@@ -8,7 +8,7 @@ import {Action} from '../../interfaces';
 
 const initialState = {
   isFavourite: false,
-  listing: null,
+  listing: {},
 };
 
 const listingReducer = (state = initialState, action: Action) => {

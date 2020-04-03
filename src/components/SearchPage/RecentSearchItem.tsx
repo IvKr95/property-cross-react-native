@@ -4,7 +4,7 @@ import {RecentSearch} from '../../interfaces';
 
 interface Props {
   searchLocation: (location: object) => void;
-  removeRecentSearch: (name: string) => void;
+  removeRecentSearch: (id: string) => void;
   recentSearch: RecentSearch;
 }
 
@@ -17,8 +17,8 @@ const RecentSearchItem: React.FC<Props> = ({
     searchLocation({place_name: name});
   };
 
-  const handleRemove = (name: string) => {
-    removeRecentSearch(name);
+  const handleRemove = (id: string) => {
+    removeRecentSearch(id);
   };
 
   return (
@@ -28,7 +28,7 @@ const RecentSearchItem: React.FC<Props> = ({
       <Text style={styles.title}>{recentSearch.name}</Text>
       <Text>{recentSearch.total}</Text>
       <TouchableOpacity
-        onPress={() => handleRemove(recentSearch.name)}
+        onPress={() => handleRemove(recentSearch.id)}
         style={styles.deleteButton}>
         <Text>X</Text>
       </TouchableOpacity>

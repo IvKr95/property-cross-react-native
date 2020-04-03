@@ -2,46 +2,57 @@ import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 
 interface Item {
-  name: string;
+  id: string;
 }
 
 const withAsyncStorage: Function = (key: string): Function => (
   Component: React.FunctionComponent,
 ) => (props: any) => {
-  const getData = (): Promise<object[] | undefined> => {
-    return AsyncStorage.getItem(`@storage_${key}`)
-      .then(result => JSON.parse(result))
-      .catch(error => console.log(error));
-  };
-
-  const setData = (item: Item): void => {
-    const data: Promise<object[] | undefined> = getData();
-    data.then(value => {
-      if (!value) {
-        const entry = [item];
-        AsyncStorage.setItem(`@storage_${key}`, JSON.stringify(entry));
-        return;
-      }
-      const newEntry = value.filter(o => o.name !== item.name);
-      newEntry.unshift(item);
-      AsyncStorage.setItem(`@storage_${key}`, JSON.stringify(newEntry));
-    });
-  };
-
-  const removeData = async (): Promise<void> => {
+  const getData = async () => {
     try {
-      await AsyncStorage.removeItem(`@storage_${key}`);
+      const json = await AsyncStorage.getItem(key);
+      const result = await (json ? JSON.parse(json) : []);
+      return result;
     } catch (error) {
       console.log(error);
     }
   };
 
-  const removeItem = (name: string): void => {
-    const data: Promise<object[] | undefined> = getData();
-    data.then(entry => {
-      const newEntry = entry.filter(item => item.name !== name);
-      AsyncStorage.setItem(`@storage_${key}`, JSON.stringify(newEntry));
-    });
+  const setData = async (newItem: {id: string}): Promise<any> => {
+    try {
+      const data = await getData();
+
+      if (!data) {
+        const newData = [newItem];
+        AsyncStorage.setItem(key, JSON.stringify(newData));
+        return;
+      }
+
+      const newData = data.filter((item: Item) => item.id !== newItem.id);
+      newData.unshift(newItem);
+      AsyncStorage.setItem(key, JSON.stringify(newData));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeData = async (): Promise<void> => {
+    try {
+      await AsyncStorage.removeItem(key);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeItem = async (id: string): Promise<void> => {
+    try {
+      const data = await getData();
+      const newData = data.filter((item: Item) => item.id !== id);
+
+      AsyncStorage.setItem(key, JSON.stringify(newData));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

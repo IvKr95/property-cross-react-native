@@ -1,12 +1,14 @@
 import {
+  SET_RECENT_SEARCH,
   SET_RECENT_SEARCHES,
-  REMOVE_RECENT_SEARCHES,
+  REMOVE_RECENT_SEARCH,
   SET_SEARCH_FIELD,
   SET_ERROR,
   SET_LISTING,
   SET_FAVOURITE,
   SET_FAVOURITES,
   REMOVE_FAVOURITE,
+  REMOVE_FAVOURITES,
   REMOVE_LISTING,
   GET_GEOLOCATION,
 } from './types';
@@ -17,8 +19,13 @@ export const setSearches = (payload: Array<object>) => ({
   payload,
 });
 
-export const removeSearches = (payload: null | undefined) => ({
-  type: REMOVE_RECENT_SEARCHES,
+export const setSearch = (payload: object) => ({
+  type: SET_RECENT_SEARCH,
+  payload,
+});
+
+export const removeSearch = (payload: string) => ({
+  type: REMOVE_RECENT_SEARCH,
   payload,
 });
 
@@ -36,8 +43,9 @@ export const removeListing = () => ({
   type: REMOVE_LISTING,
 });
 
-export const setFavourite = () => ({
+export const setFavourite = (payload?: object) => ({
   type: SET_FAVOURITE,
+  payload,
 });
 
 export const setFavourites = (payload: Array<object>) => ({
@@ -45,9 +53,13 @@ export const setFavourites = (payload: Array<object>) => ({
   payload,
 });
 
-export const removeFavourite = (payload: string) => ({
+export const removeFavourite = (payload?: string) => ({
   type: REMOVE_FAVOURITE,
   payload,
+});
+
+export const removeFavourites = () => ({
+  type: REMOVE_FAVOURITES,
 });
 
 export const setError = (payload: string) => ({
