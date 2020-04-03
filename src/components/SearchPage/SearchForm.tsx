@@ -12,7 +12,7 @@ interface Props {
   changeInput: (input: string) => void;
   location: string;
   isLoading: boolean;
-  searchLocation: (placeName: object) => void;
+  searchLocation: (placeName: {place_name: string}) => void;
   getCoords: () => void;
 }
 
@@ -41,10 +41,10 @@ const SearchForm: React.FC<Props> = ({
         Use the form below to search for houses to buy
       </Text>
       <TextInput
-        placeholder="Edinburgh"
-        onChangeText={handleChange}
         value={location}
         style={styles.input}
+        placeholder="Edinburgh"
+        onChangeText={handleChange}
       />
       <Text style={styles.hint}>
         You can search by place-name, postcode, or click &lsquo;My

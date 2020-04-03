@@ -8,12 +8,12 @@ import {
   removeListing,
 } from '../../redux/actions/actionCreators';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
-import {RootState} from '../../interfaces';
+import {RootState, Listing} from '../../interfaces';
 
 interface Props {
-  getData: () => Promise<object[]>;
-  setData: (data: object) => Promise<void | undefined>;
-  removeItem: (id: string) => void;
+  getData: () => Promise<Listing[]>;
+  setData: (data: Listing) => Promise<void | undefined>;
+  removeItem: (id: string) => Promise<void>;
   route: {
     params: {
       listing: JSON;
@@ -43,7 +43,7 @@ const ListingContainer: React.FC<Props> = ({
 
   useEffect(() => {
     function checkIfFavourite() {
-      const data: Promise<any[]> = getData();
+      const data = getData();
       data.then(favourites => {
         if (!favourites.length) {
           return;

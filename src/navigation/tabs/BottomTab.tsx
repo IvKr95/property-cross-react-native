@@ -1,17 +1,13 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {NavigationState} from '@react-navigation/native';
-import {BottomTabDescriptor} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
-import {Navigation} from '../../interfaces';
+import {Navigation, Descriptor, Route} from '../../interfaces';
 
 interface Props {
   state: NavigationState;
-  descriptors: BottomTabDescriptor;
+  descriptors: Descriptor;
   navigation: Navigation;
-  route: {
-    key: string;
-    name: string;
-  };
+  route: Route;
   index: number;
 }
 

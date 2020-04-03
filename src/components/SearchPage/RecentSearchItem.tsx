@@ -3,7 +3,7 @@ import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {RecentSearch} from '../../interfaces';
 
 interface Props {
-  searchLocation: (location: object) => void;
+  searchLocation: (location: {place_name: string}) => void;
   removeRecentSearch: (id: string) => void;
   recentSearch: RecentSearch;
 }

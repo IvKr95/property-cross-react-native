@@ -4,9 +4,9 @@ import {
   REMOVE_FAVOURITE,
   REMOVE_FAVOURITES,
 } from '../actions/types';
-import {Action} from '../../interfaces';
+import {Action, Listing} from '../../interfaces';
 
-const initialState: any[] = [];
+const initialState: Listing[] = [];
 
 const favouritesReducer = (state = initialState, action: Action) => {
   const {type, payload} = action;

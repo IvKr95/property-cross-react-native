@@ -6,7 +6,7 @@ import Locations from './Locations';
 import SearchForm from './SearchForm';
 
 interface Props {
-  searchLocation: (placeName: object) => void;
+  searchLocation: (placeName: {place_name: string}) => void;
   removeRecentSearch: (id: string) => void;
   changeInput: (input: string) => void;
   getCoords: () => void;

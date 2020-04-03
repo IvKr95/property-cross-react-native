@@ -1,13 +1,13 @@
 export interface PropSearch {
   isLoading: boolean;
   location: string;
-  recentSearches: object[];
-  locations: object[] | null;
+  recentSearches: RecentSearch[];
+  locations: Location[] | null;
   error: null | string | object;
 }
 
 export interface SearchResults {
-  listings: object[];
+  listings: Listing[];
   searchTerm: string;
   currentlyDisplayed: number;
   total: number;
@@ -32,6 +32,7 @@ export interface RecentSearch {
 }
 
 export interface Location {
+  id: string;
   name: string;
   props: number;
 }
@@ -50,6 +51,17 @@ export interface Navigation {
   navigate: (route: string) => void;
 }
 
+export interface Descriptor {
+  [propName: string]: {
+    options: {
+      tabBarLabel: string;
+      title: string;
+      tabBarAccessibilityLabel: string;
+      tabBarTestID: string;
+    };
+  };
+}
+
 export interface Route {
   name: string;
   key: string;
@@ -62,6 +74,7 @@ export interface Action {
 }
 
 export interface Listing {
+  id: string;
   thumb_url: string;
   title: string;
   price_formatted: string;

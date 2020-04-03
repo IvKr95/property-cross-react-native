@@ -13,9 +13,9 @@ import {
   GET_GEOLOCATION,
 } from './types';
 import {SEARCH_LOCATION} from './asyncTypes';
-import {Action} from '../../interfaces';
+import {Action, RecentSearch} from '../../interfaces';
 
-export const setSearches = (payload: object[]): Action => ({
+export const setSearches = (payload: RecentSearch[]): Action => ({
   type: SET_RECENT_SEARCHES,
   payload,
 });

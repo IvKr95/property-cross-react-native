@@ -9,13 +9,13 @@ import {
   getGeolocation,
   searchLocationRequest,
 } from '../../redux/actions/actionCreators';
-import {RootState, Navigation} from '../../interfaces';
+import {RootState, Navigation, RecentSearch} from '../../interfaces';
 import SearchView from './SearchView';
 
 interface Props {
-  getData: () => Promise<object[]>;
-  setData: (data: object) => void;
-  removeItem: (name: string) => void;
+  getData: () => Promise<RecentSearch[]>;
+  setData: (data: RecentSearch) => Promise<void | undefined>;
+  removeItem: (name: string) => Promise<void>;
   navigation: Navigation;
 }
 
