@@ -1,13 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
 import {NavigationState} from '@react-navigation/native';
-import {BottomTabDescriptor} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
-import {Navigation} from '../../interfaces';
+import {Navigation, Descriptor} from '../../interfaces';
 import BottomTab from './BottomTab';
 
 interface Props {
   state: NavigationState;
-  descriptors: BottomTabDescriptor;
+  descriptors: Descriptor;
   navigation: Navigation;
 }
 

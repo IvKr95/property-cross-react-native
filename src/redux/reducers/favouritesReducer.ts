@@ -2,23 +2,34 @@ import {
   SET_FAVOURITE,
   SET_FAVOURITES,
   REMOVE_FAVOURITE,
+  REMOVE_FAVOURITES,
 } from '../actions/types';
-import {Action} from '../../interfaces';
+import {Action, Listing} from '../../interfaces';
 
-const initialState: Array<object | null> = [];
+const initialState: Listing[] = [];
 
 const favouritesReducer = (state = initialState, action: Action) => {
   const {type, payload} = action;
 
   const actions = {
     [SET_FAVOURITE]() {
-      return [...state, payload];
+      if (state.length) {
+        const newState = state.filter(item => item.id !== payload.id);
+        return [...newState, payload];
+      }
+      return [payload];
+    },
+    [REMOVE_FAVOURITE]() {
+      if (state.length && payload) {
+        return state.filter(item => item.id !== payload);
+      }
+      return state;
     },
     [SET_FAVOURITES]() {
       return payload;
     },
-    [REMOVE_FAVOURITE]() {
-      return state.filter(fav => fav.lister_url !== action.payload);
+    [REMOVE_FAVOURITES]() {
+      return initialState;
     },
     default() {
       return state;

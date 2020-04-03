@@ -1,20 +1,28 @@
 export interface PropSearch {
   isLoading: boolean;
   location: string;
-  recentSearches: object[] | [];
-  locations: object[] | null;
+  recentSearches: RecentSearch[];
+  locations: Location[] | null;
   error: null | string | object;
 }
 
 export interface SearchResults {
-  listings: object[] | [];
+  listings: Listing[];
   searchTerm: string;
+  currentlyDisplayed: number;
   total: number;
+  page: number;
+}
+
+export interface ListingPage {
+  isFavourite: boolean;
+  listing: object;
 }
 
 export interface RootState {
   propSearch: PropSearch;
   searchResults: SearchResults;
+  listing: ListingPage;
 }
 
 export interface RecentSearch {
@@ -24,6 +32,7 @@ export interface RecentSearch {
 }
 
 export interface Location {
+  id: string;
   name: string;
   props: number;
 }
@@ -42,18 +51,35 @@ export interface Navigation {
   navigate: (route: string) => void;
 }
 
+export interface Descriptor {
+  [propName: string]: {
+    options: {
+      tabBarLabel: string;
+      title: string;
+      tabBarAccessibilityLabel: string;
+      tabBarTestID: string;
+    };
+  };
+}
+
 export interface Route {
   name: string;
   key: string;
+  params?: object;
 }
 
 export interface Action {
   type: string;
-  payload: string | object[] | object;
+  payload?: string | object[] | object | JSON;
 }
 
 export interface Listing {
+  id: string;
   thumb_url: string;
   title: string;
   price_formatted: string;
+  img_url: string;
+  bedroom_number: number;
+  bathroom_number: number;
+  summary: string;
 }

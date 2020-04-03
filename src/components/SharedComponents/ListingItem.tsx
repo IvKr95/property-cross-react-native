@@ -19,7 +19,7 @@ const ListingItem: React.FC<Props> = ({listing, goToListing}) => {
           <Image style={styles.image} source={{uri: listing.img_url}} />
         </View>
         <View>
-          <Text style={styles.description}>{listing.title}</Text>
+          <Text>{listing.title}</Text>
           <Text>{listing.price_formatted}</Text>
         </View>
       </View>

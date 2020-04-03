@@ -6,11 +6,12 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
+import {Listing} from '../../interfaces';
 import ListingItem from './ListingItem';
 
 interface Props {
   isLoading: boolean;
-  listings: object[];
+  listings: Listing[];
   goToListing: (listingData: JSON) => void;
   loadMore: () => void;
   currentlyDisplayed: number;
