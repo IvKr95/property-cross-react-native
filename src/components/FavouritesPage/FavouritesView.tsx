@@ -1,17 +1,22 @@
 import React from 'react';
-import {View} from 'react-native';
+import {FlatList} from 'react-native';
+import ListingItem from '../SharedComponents/ListingItem';
+import {Listing} from '../../interfaces';
 
-const FavouritesView = props => {
+interface Props {
+  favourites: Listing[];
+  goToListing: (data: JSON) => void;
+}
+
+const FavouritesView: React.FC<Props> = ({favourites, goToListing}) => {
   return (
-    <View />
-    // <main className="main">
-    //   <h1>
-    //     {favourites.length > 0
-    //       ? 'Favourites'
-    //       : 'You have not added any properties to your favourites'}
-    //   </h1>
-    //   <Listings favourites={favourites} onClick={handleClick} />
-    // </main>
+    <FlatList
+      data={favourites}
+      renderItem={({item}) => (
+        <ListingItem listing={item} goToListing={goToListing} />
+      )}
+      keyExtractor={item => item.id}
+    />
   );
 };
 

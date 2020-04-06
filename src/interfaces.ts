@@ -23,6 +23,7 @@ export interface RootState {
   propSearch: PropSearch;
   searchResults: SearchResults;
   listing: ListingPage;
+  favourites: Listing[];
 }
 
 export interface RecentSearch {
