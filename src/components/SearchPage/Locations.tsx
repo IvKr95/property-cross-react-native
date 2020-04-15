@@ -17,7 +17,7 @@ const Locations: React.FC<Props> = ({locations}) => {
             <Text>{location.props}</Text>
           </View>
         )}
-        keyExtractor={location => location.id}
+        keyExtractor={(location: Location) => location.id}
       />
     </View>
   );

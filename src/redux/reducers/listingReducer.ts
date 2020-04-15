@@ -18,7 +18,7 @@ const listingReducer = (state = initialState, action: Action) => {
     [SET_LISTING]() {
       return {
         ...state,
-        listing: JSON.parse(payload),
+        listing: payload,
       };
     },
     [SET_FAVOURITE]() {

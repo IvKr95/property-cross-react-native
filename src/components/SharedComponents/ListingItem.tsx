@@ -4,16 +4,16 @@ import {Listing} from '../../interfaces';
 
 interface Props {
   listing: Listing;
-  goToListing: (data: JSON) => void;
+  goToListing: (data: Listing) => void;
 }
 
 const ListingItem: React.FC<Props> = ({listing, goToListing}) => {
-  const handlePress = (data: JSON) => {
+  const handlePress = (data: Listing) => {
     goToListing(data);
   };
 
   return (
-    <TouchableHighlight onPress={() => handlePress(JSON.stringify(listing))}>
+    <TouchableHighlight onPress={() => handlePress(listing)}>
       <View style={styles.container}>
         <View>
           <Image style={styles.image} source={{uri: listing.img_url}} />

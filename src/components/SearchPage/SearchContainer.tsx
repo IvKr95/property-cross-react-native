@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import RecentSearchModel from '../../models/RecentSearchModel';
 import withAsyncStorage from '../../hocs/withAsyncStorage';
 import {
   setSearch,
@@ -27,10 +28,10 @@ const SearchContainer: React.FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
   const {isLoading, location, recentSearches, locations, error} = useSelector(
-    (state: RootState) => state.propSearch,
+    (state: RootState) => state.searchPage,
   );
   const {listings, searchTerm, total, currentlyDisplayed} = useSelector(
-    (state: RootState) => state.searchResults,
+    (state: RootState) => state.resultsPage,
   );
   const firstRun = useRef<boolean>(true);
 
@@ -45,17 +46,15 @@ const SearchContainer: React.FC<Props> = ({
       return;
     }
     if (!isLoading && listings.length) {
-      setData({
-        id: searchTerm,
-        name: searchTerm,
+      const recentSearchInstance: RecentSearch = new RecentSearchModel(
+        searchTerm,
         total,
-      });
-      const action = setSearch({
-        id: searchTerm,
-        name: searchTerm,
-        total,
-      });
+      );
+
+      setData(recentSearchInstance);
+      const action = setSearch(recentSearchInstance);
       dispatch(action);
+
       navigation.navigate('ResultsPage');
     }
   }, [
@@ -99,14 +98,14 @@ const SearchContainer: React.FC<Props> = ({
 
   return (
     <SearchView
-      recentSearches={recentSearches}
-      locations={locations}
       error={error}
-      searchLocation={searchLocation}
-      changeInput={changeInput}
       location={location}
       isLoading={isLoading}
+      locations={locations}
+      recentSearches={recentSearches}
       removeRecentSearch={removeRecentSearch}
+      searchLocation={searchLocation}
+      changeInput={changeInput}
       getCoords={getCoords}
     />
   );

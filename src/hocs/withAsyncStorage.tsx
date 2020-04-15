@@ -18,7 +18,7 @@ const withAsyncStorage: Function = (key: string): Function => (
     }
   };
 
-  const setData = async (newItem: {id: string}): Promise<undefined | void> => {
+  const setData = async (newItem: Item): Promise<undefined | void> => {
     try {
       const data = await getData();
 

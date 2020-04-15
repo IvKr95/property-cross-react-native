@@ -16,7 +16,7 @@ interface Props {
   removeItem: (id: string) => Promise<void>;
   route: {
     params: {
-      listing: JSON;
+      listing: Listing;
     };
   };
 }
@@ -29,11 +29,11 @@ const ListingContainer: React.FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
   const {isFavourite, listing} = useSelector(
-    (state: RootState) => state.listing,
+    (state: RootState) => state.listingPage,
   );
 
   useEffect(() => {
-    const action: object = setListing(route.params.listing);
+    const action = setListing(route.params.listing);
     dispatch(action);
 
     return () => {
@@ -49,7 +49,7 @@ const ListingContainer: React.FC<Props> = ({
           return;
         }
 
-        const favourite: object | undefined = favourites.find(
+        const favourite: Listing | undefined = favourites.find(
           item => item.id === listing.id,
         );
 

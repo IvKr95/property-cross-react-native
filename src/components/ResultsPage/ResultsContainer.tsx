@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {RootState, Navigation, Listing} from '../../interfaces';
 import {searchLocationRequest} from '../../redux/actions/actionCreators';
 import ResultsView from './ResultsView';
-import {RootState, Navigation} from '../../interfaces';
 
 interface Props {
   navigation: Navigation;
@@ -10,14 +10,23 @@ interface Props {
 
 const ResultsContainer: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
-  const {page, total, listings, searchTerm, currentlyDisplayed} = useSelector(
-    (state: RootState) => state.searchResults,
-  );
-  const {isLoading, error} = useSelector(
-    (state: RootState) => state.propSearch,
-  );
+  const {
+    isLoading,
+    error,
+    page,
+    total,
+    listings,
+    searchTerm,
+    currentlyDisplayed,
+  } = useSelector((state: RootState) => state.resultsPage);
 
-  const goToListing = (item: JSON) => {
+  useEffect(() => {
+    return () => {
+      dispatch({type: 'CLEAR_RESULTS_PAGE'});
+    };
+  }, [dispatch]);
+
+  const goToListing = (item: Listing) => {
     navigation.navigate('ListingPage', {listing: item});
   };
 
@@ -31,14 +40,14 @@ const ResultsContainer: React.FC<Props> = ({navigation}) => {
 
   return (
     <ResultsView
-      isLoading={isLoading}
       error={error}
-      goToListing={goToListing}
-      loadMore={loadMore}
-      currentlyDisplayed={currentlyDisplayed}
       total={total}
       listings={listings}
+      isLoading={isLoading}
       searchTerm={searchTerm}
+      currentlyDisplayed={currentlyDisplayed}
+      loadMore={loadMore}
+      goToListing={goToListing}
     />
   );
 };

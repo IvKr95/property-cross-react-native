@@ -7,11 +7,11 @@ import BottomTabBar from './BottomTabBar';
 
 const Tab = createBottomTabNavigator();
 
+const tabBar = props => <BottomTabBar {...props} />;
+
 const BottomTabs: React.FC = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="SearchPage"
-      tabBar={props => <BottomTabBar {...props} />}>
+    <Tab.Navigator initialRouteName="SearchPage" tabBar={tabBar}>
       <Tab.Screen
         name="SearchPage"
         component={SearchPage}

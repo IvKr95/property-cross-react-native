@@ -7,12 +7,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import {SearchPage} from '../../interfaces';
 
-interface Props {
-  changeInput: (input: string) => void;
-  location: string;
-  isLoading: boolean;
+interface Props extends SearchPage {
   searchLocation: (placeName: {place_name: string}) => void;
+  changeInput: (input: string) => void;
   getCoords: () => void;
 }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {Listing} from '../../interfaces';
+import {ListingPage} from '../../interfaces';
 
-interface Props {
+interface Props extends ListingPage {
   handleFavouriteState: () => void;
-  isFavourite: boolean;
-  listing: Listing;
 }
 
 const ListingView: React.FC<Props> = ({

@@ -13,14 +13,14 @@ import {
   GET_GEOLOCATION,
 } from './types';
 import {SEARCH_LOCATION} from './asyncTypes';
-import {Action, RecentSearch} from '../../interfaces';
+import {Action, RecentSearch, Listing} from '../../interfaces';
 
 export const setSearches = (payload: RecentSearch[]): Action => ({
   type: SET_RECENT_SEARCHES,
   payload,
 });
 
-export const setSearch = (payload: object): Action => ({
+export const setSearch = (payload: RecentSearch): Action => ({
   type: SET_RECENT_SEARCH,
   payload,
 });
@@ -35,7 +35,7 @@ export const setSearchField = (payload: string): Action => ({
   payload,
 });
 
-export const setListing = (payload: JSON): Action => ({
+export const setListing = (payload: Listing): Action => ({
   type: SET_LISTING,
   payload,
 });
@@ -44,12 +44,12 @@ export const removeListing = (): Action => ({
   type: REMOVE_LISTING,
 });
 
-export const setFavourite = (payload?: object): Action => ({
+export const setFavourite = (payload: Listing): Action => ({
   type: SET_FAVOURITE,
   payload,
 });
 
-export const setFavourites = (payload: object[]): Action => ({
+export const setFavourites = (payload: Listing[]): Action => ({
   type: SET_FAVOURITES,
   payload,
 });
@@ -78,7 +78,7 @@ export const searchLocationSuccess = (payload: object): Action => ({
   payload,
 });
 
-export const searchLocationFailure = (payload: object): Action => ({
+export const searchLocationFailure = (payload: object | string): Action => ({
   type: SEARCH_LOCATION.FAILURE,
   payload,
 });

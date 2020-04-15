@@ -12,7 +12,7 @@ const initialState = {
   isLoading: false,
   location: '',
   recentSearches: [],
-  locations: null,
+  locations: [],
   error: null,
 };
 
@@ -65,7 +65,7 @@ const propSearchReducer = (state = initialState, action: Action) => {
         error: null,
         isLoading: false,
         location: '',
-        locations: payload.locations || null,
+        locations: payload.locations || [],
       };
     },
     [SEARCH_LOCATION.FAILURE]() {

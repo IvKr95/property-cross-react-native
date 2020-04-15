@@ -1,29 +1,31 @@
-export interface PropSearch {
+export interface SearchPage {
   isLoading: boolean;
   location: string;
   recentSearches: RecentSearch[];
-  locations: Location[] | null;
-  error: null | string | object;
+  locations: Location[];
+  error: null | string;
 }
 
-export interface SearchResults {
+export interface ResultsPage {
   listings: Listing[];
   searchTerm: string;
   currentlyDisplayed: number;
   total: number;
   page: number;
+  isLoading: false;
+  error: null;
 }
 
 export interface ListingPage {
   isFavourite: boolean;
-  listing: object;
+  listing: Listing;
 }
 
 export interface RootState {
-  propSearch: PropSearch;
-  searchResults: SearchResults;
-  listing: ListingPage;
-  favourites: Listing[];
+  searchPage: SearchPage;
+  resultsPage: ResultsPage;
+  listingPage: ListingPage;
+  favouritesPage: Listing[];
 }
 
 export interface RecentSearch {
@@ -49,7 +51,7 @@ export interface TabPress {
 
 export interface Navigation {
   emit: (props: object) => TabPress;
-  navigate: (route: string) => void;
+  navigate: (route: Route) => void;
 }
 
 export interface Descriptor {
@@ -71,16 +73,16 @@ export interface Route {
 
 export interface Action {
   type: string;
-  payload?: string | object[] | object | JSON;
+  payload?: string | object[] | object;
 }
 
 export interface Listing {
   id: string;
-  thumb_url: string;
   title: string;
-  price_formatted: string;
-  img_url: string;
   bedroom_number: number;
   bathroom_number: number;
   summary: string;
+  price_formatted: string;
+  img_url: string;
+  thumb_url: string;
 }

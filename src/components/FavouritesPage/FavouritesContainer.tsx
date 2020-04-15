@@ -12,14 +12,14 @@ interface Props {
 
 const FavouritesContainer: React.FC<Props> = ({getData, navigation}) => {
   const dispatch = useDispatch();
-  const favourites = useSelector((state: RootState) => state.favourites);
+  const favourites = useSelector((state: RootState) => state.favouritesPage);
 
   useEffect(() => {
     const data = getData();
     data.then(items => dispatch(setFavourites(items)));
   }, [dispatch, getData]);
 
-  const goToListing = (data: JSON) => {
+  const goToListing = (data: Listing) => {
     navigation.navigate('ListingPage', {listing: data});
   };
 

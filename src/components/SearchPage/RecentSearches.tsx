@@ -9,6 +9,8 @@ interface Props {
   searchLocation: (placeName: {place_name: string}) => void;
 }
 
+const listHeader = <Text>Recent Searches:</Text>;
+
 const RecentSearches: React.FC<Props> = ({
   recentSearches,
   searchLocation,
@@ -25,7 +27,7 @@ const RecentSearches: React.FC<Props> = ({
         />
       )}
       keyExtractor={item => item.id}
-      ListHeaderComponent={() => <Text>Recent Searches:</Text>}
+      ListHeaderComponent={listHeader}
     />
   );
 };

@@ -6,18 +6,12 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-import {Listing} from '../../interfaces';
+import {ResultsPage, Listing} from '../../interfaces';
 import ListingItem from './ListingItem';
 
-interface Props {
-  isLoading: boolean;
-  listings: Listing[];
-  goToListing: (listingData: JSON) => void;
+interface Props extends ResultsPage {
   loadMore: () => void;
-  currentlyDisplayed: number;
-  searchTerm: string;
-  total: number;
-  error?: string;
+  goToListing: (data: Listing) => void;
 }
 
 const Listings: React.FC<Props> = ({

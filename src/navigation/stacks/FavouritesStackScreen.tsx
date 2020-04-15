@@ -5,7 +5,7 @@ import ListingPage from '../../components/ListingPage/ListingContainer';
 
 const FavouritesStack = createStackNavigator();
 
-function FavouritesStackScreen(): React.ReactElement {
+function FavouritesStackScreen({navigation}): React.ReactElement {
   return (
     <FavouritesStack.Navigator initialRouteName="FavouritesPage">
       <FavouritesStack.Screen

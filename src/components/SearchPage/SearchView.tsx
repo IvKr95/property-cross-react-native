@@ -1,20 +1,15 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import {RecentSearch, Location} from '../../interfaces';
+import {SearchPage} from '../../interfaces';
 import RecentSearches from './RecentSearches';
 import Locations from './Locations';
 import SearchForm from './SearchForm';
 
-interface Props {
+interface Props extends SearchPage {
   searchLocation: (placeName: {place_name: string}) => void;
   removeRecentSearch: (id: string) => void;
   changeInput: (input: string) => void;
   getCoords: () => void;
-  location: string;
-  isLoading: boolean;
-  locations: Location[] | null;
-  error: null | object | string;
-  recentSearches: RecentSearch[];
 }
 
 const SearchView: React.FC<Props> = ({
@@ -41,7 +36,7 @@ const SearchView: React.FC<Props> = ({
           searchLocation={searchLocation}
         />
       );
-    } else if (locations && locations.length) {
+    } else if (locations.length) {
       return <Locations locations={locations} />;
     }
     return null;
