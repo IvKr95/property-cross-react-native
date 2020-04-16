@@ -11,7 +11,7 @@ import locationAPI from '../../api/locationApi';
 import geolocationApi from '../../api/geolocationApi';
 import {Action} from '../../interfaces';
 
-function* searchLocation(action: Action) {
+export function* searchLocation(action: Action) {
   try {
     const data = yield call(locationAPI.getLocation, action.payload);
     yield put(searchLocationSuccess(data));
@@ -20,7 +20,7 @@ function* searchLocation(action: Action) {
   }
 }
 
-function* getGeolocation() {
+export function* getGeolocation() {
   try {
     const position = yield call(geolocationApi.getPosition);
     yield put(searchLocationRequest({centre_point: position}));

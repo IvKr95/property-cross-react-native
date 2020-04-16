@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getGeolocation return an action 1`] = `
+Object {
+  "type": "GET_GEOLOCATION",
+}
+`;
+
+exports[`removeFavourite returns an action returns an id in payload 1`] = `
+Object {
+  "payload": "someId",
+  "type": "REMOVE_FAVOURITE",
+}
+`;
+
+exports[`removeFavourite returns an action returns undefined in payload 1`] = `
+Object {
+  "payload": undefined,
+  "type": "REMOVE_FAVOURITE",
+}
+`;
+
+exports[`removeFavourites returns an action 1`] = `
+Object {
+  "type": "REMOVE_FAVOURITES",
+}
+`;
+
+exports[`removeListing returns an action 1`] = `
+Object {
+  "type": "REMOVE_LISTING",
+}
+`;
+
+exports[`removeSearch returns an action 1`] = `
+Object {
+  "payload": "testId",
+  "type": "REMOVE_RECENT_SEARCH",
+}
+`;
+
+exports[`setError returns an action 1`] = `
+Object {
+  "payload": "someError",
+  "type": "SET_ERROR",
+}
+`;
+
+exports[`setFavourite returns an action 1`] = `
+Object {
+  "payload": Object {
+    "id": "someId",
+  },
+  "type": "SET_FAVOURITE",
+}
+`;
+
+exports[`setFavourites returns actions returns an action with an array of objects 1`] = `
+Object {
+  "payload": Array [
+    Object {
+      "someParam": "someParam",
+    },
+  ],
+  "type": "SET_FAVOURITES",
+}
+`;
+
+exports[`setFavourites returns actions returns an action with empty array 1`] = `
+Object {
+  "payload": Array [],
+  "type": "SET_FAVOURITES",
+}
+`;
+
+exports[`setListing returns an action 1`] = `
+Object {
+  "payload": Object {
+    "id": "someId",
+  },
+  "type": "SET_LISTING",
+}
+`;
+
+exports[`setSearch returns an action 1`] = `
+Object {
+  "payload": Object {
+    "id": "testID",
+  },
+  "type": "SET_RECENT_SEARCH",
+}
+`;
+
+exports[`setSearchField returns an action 1`] = `
+Object {
+  "payload": "testSearch",
+  "type": "SET_SEARCH_FIELD",
+}
+`;
+
+exports[`setSearches returns actions returns an action with an array of objects 1`] = `
+Object {
+  "payload": Array [
+    Object {
+      "id": "testID",
+    },
+  ],
+  "type": "SET_RECENT_SEARCHES",
+}
+`;
+
+exports[`setSearches returns actions returns an action with empty array 1`] = `
+Object {
+  "payload": Array [],
+  "type": "SET_RECENT_SEARCHES",
+}
+`;

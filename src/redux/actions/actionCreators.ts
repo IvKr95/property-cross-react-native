@@ -1,74 +1,61 @@
-import {
-  SET_RECENT_SEARCH,
-  SET_RECENT_SEARCHES,
-  REMOVE_RECENT_SEARCH,
-  SET_SEARCH_FIELD,
-  SET_ERROR,
-  SET_LISTING,
-  SET_FAVOURITE,
-  SET_FAVOURITES,
-  REMOVE_FAVOURITE,
-  REMOVE_FAVOURITES,
-  REMOVE_LISTING,
-  GET_GEOLOCATION,
-} from './types';
+import * as types from './types';
 import {SEARCH_LOCATION} from './asyncTypes';
 import {Action, RecentSearch, Listing} from '../../interfaces';
 
 export const setSearches = (payload: RecentSearch[]): Action => ({
-  type: SET_RECENT_SEARCHES,
+  type: types.SET_RECENT_SEARCHES,
   payload,
 });
 
 export const setSearch = (payload: RecentSearch): Action => ({
-  type: SET_RECENT_SEARCH,
+  type: types.SET_RECENT_SEARCH,
   payload,
 });
 
 export const removeSearch = (payload: string): Action => ({
-  type: REMOVE_RECENT_SEARCH,
+  type: types.REMOVE_RECENT_SEARCH,
   payload,
 });
 
 export const setSearchField = (payload: string): Action => ({
-  type: SET_SEARCH_FIELD,
+  type: types.SET_SEARCH_FIELD,
   payload,
 });
 
 export const setListing = (payload: Listing): Action => ({
-  type: SET_LISTING,
+  type: types.SET_LISTING,
   payload,
 });
 
 export const removeListing = (): Action => ({
-  type: REMOVE_LISTING,
+  type: types.REMOVE_LISTING,
 });
 
 export const setFavourite = (payload: Listing): Action => ({
-  type: SET_FAVOURITE,
+  type: types.SET_FAVOURITE,
   payload,
 });
 
 export const setFavourites = (payload: Listing[]): Action => ({
-  type: SET_FAVOURITES,
+  type: types.SET_FAVOURITES,
   payload,
 });
 
 export const removeFavourite = (payload?: string): Action => ({
-  type: REMOVE_FAVOURITE,
+  type: types.REMOVE_FAVOURITE,
   payload,
 });
 
 export const removeFavourites = (): Action => ({
-  type: REMOVE_FAVOURITES,
+  type: types.REMOVE_FAVOURITES,
 });
 
 export const setError = (payload: string): Action => ({
-  type: SET_ERROR,
+  type: types.SET_ERROR,
   payload,
 });
 
-export const searchLocationRequest = (payload?: object): Action => ({
+export const searchLocationRequest = (payload: object): Action => ({
   type: SEARCH_LOCATION.REQUEST,
   payload,
 });
@@ -78,11 +65,11 @@ export const searchLocationSuccess = (payload: object): Action => ({
   payload,
 });
 
-export const searchLocationFailure = (payload: object | string): Action => ({
+export const searchLocationFailure = (payload: string): Action => ({
   type: SEARCH_LOCATION.FAILURE,
   payload,
 });
 
 export const getGeolocation = (): Action => ({
-  type: GET_GEOLOCATION,
+  type: types.GET_GEOLOCATION,
 });
